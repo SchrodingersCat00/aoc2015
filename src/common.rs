@@ -1,8 +1,7 @@
-use std::str::FromStr;
 use std::fmt::Debug;
 
 pub trait Day {
-    type Input: FromStr;
+    type Input;
     type Output: Debug;
     fn parse(input: &str) -> Self::Input;
     fn part1(input: &Self::Input) -> Self::Output;
