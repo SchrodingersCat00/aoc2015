@@ -16,22 +16,27 @@ impl Day for Day1 {
     }
 
     fn part2(input: &Self::Input) -> Self::Output {
-        let mut pos = 1;
-        let mut floor: i32 = 0;
-        for c in input.chars() {
-            if c == '(' {
-                floor += 1;
-            } else if c == ')' {
-                floor -= 1;
+        input.chars().scan((0, 1), |(floor, pos), c| {
+            if *floor == -1 {
+                return None;
             }
 
-            if floor == -1 {
-                break;
-            }
-            pos += 1;
-        }
+            match c {
+                '(' => {
+                    *floor += 1;
+                    *pos += 1;
+                },
+                ')' => {
 
-        pos
+                    *floor -= 1;
+                    *pos += 1;
+                },
+                _ => panic!("Something is wrong"),
+            };
+
+            Some((*floor, *pos))
+
+        }).count() as i32
     }
 
     fn parse(input: &str) -> Self::Input {
