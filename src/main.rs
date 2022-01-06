@@ -15,7 +15,7 @@ fn run_day<D: common::Day>(content: &str) -> Option<()> {
 }
 
 fn main() {
-    let content = fs::read_to_string("input/day1.txt")
+    let content = fs::read_to_string("input/day3.txt")
         .expect("Error while reading input file");
-    run_day::<day1::Day1>(&content).unwrap();
+    run_day::<day3::Day3>(&content).unwrap();
 }
