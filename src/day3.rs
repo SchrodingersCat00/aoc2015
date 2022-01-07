@@ -57,3 +57,22 @@ impl Day for Day3 {
         String::from(input)
     }
 }
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn part1() {
+        assert_eq!(Day3::part1(&String::from(">")), 2);
+        assert_eq!(Day3::part1(&String::from("^>v<")), 4);
+        assert_eq!(Day3::part1(&String::from("^v^v^v^v^v")), 2);
+    }
+
+    #[test]
+    fn part2() {
+        assert_eq!(Day3::part2(&String::from("^v")), 3);
+        assert_eq!(Day3::part2(&String::from("^>v<")), 3);
+        assert_eq!(Day3::part2(&String::from("^v^v^v^v^v")), 11);
+    }
+}
