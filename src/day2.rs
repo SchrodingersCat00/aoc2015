@@ -12,6 +12,10 @@ impl Day for Day2 {
     type Input = Vec::<Present>;
     type Output = u32;
 
+    fn day_number() -> usize {
+        2
+    }
+
     fn part1(input: &Self::Input) -> Self::Output {
         input.iter().fold(0, |acc, present| {
             let s1 = present.width*present.length;

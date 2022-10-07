@@ -28,6 +28,10 @@ impl Day for Day3 {
     type Input = String;
     type Output = u32;
 
+    fn day_number() -> usize {
+        3
+    }
+
     fn part1(input: &Self::Input) -> Self::Output {
         let seen_positions = {
             let mut inner = HashSet::new();

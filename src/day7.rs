@@ -1,10 +1,34 @@
-use std::{collections::HashMap};
+use std::collections::HashMap;
 
 use crate::common::Day;
 
 pub struct Day7;
 
 type Wire = String;
+
+pub type Connection = (Wire, Signal);
+
+#[derive(Debug, Clone)]
+pub enum BasicSignal {
+    Literal(u16),
+    Wire(Wire),
+}
+
+#[derive(Debug, Clone)]
+pub enum Gate {
+    And(BasicSignal, BasicSignal),
+    Or(BasicSignal, BasicSignal),
+    Not(BasicSignal),
+    LShift(BasicSignal, BasicSignal),
+    RShift(BasicSignal, BasicSignal),
+}
+
+#[derive(Debug, Clone)]
+pub enum Signal {
+    Gate(Gate),
+    BasicSignal(BasicSignal),
+}
+
 #[derive(Debug, Clone)]
 pub struct Circuit {
     connections: HashMap<Wire, Signal>,
@@ -36,7 +60,6 @@ impl Circuit {
     }
 
     fn eval_wire(&mut self, wire: &Wire) -> Option<u16> {
-        println!("Evaluating wire: {}", wire);
         match self.connections.get(wire)?.clone() {
             Signal::BasicSignal(x) => self.eval_basic_signal(&x),
             Signal::Gate(gate) => match gate {
@@ -52,29 +75,6 @@ impl Circuit {
             },
         }
     }
-}
-
-pub type Connection = (Wire, Signal);
-
-#[derive(Debug, Clone)]
-pub enum BasicSignal {
-    Literal(u16),
-    Wire(Wire),
-}
-
-#[derive(Debug, Clone)]
-pub enum Gate {
-    And(BasicSignal, BasicSignal),
-    Or(BasicSignal, BasicSignal),
-    Not(BasicSignal),
-    LShift(BasicSignal, BasicSignal),
-    RShift(BasicSignal, BasicSignal),
-}
-
-#[derive(Debug, Clone)]
-pub enum Signal {
-    Gate(Gate),
-    BasicSignal(BasicSignal),
 }
 
 fn parse_basic_signal(basic_signal: &str) -> BasicSignal {
@@ -115,6 +115,10 @@ fn parse_connection(connection: &str) -> Connection {
 impl Day for Day7 {
     type Input = Circuit;
     type Output = u16;
+
+    fn day_number() -> usize {
+        7
+    }
 
     fn part1(input: &Self::Input) -> Self::Output {
         let mut input_clone= input.clone();

@@ -5,6 +5,10 @@ impl Day for Day1 {
     type Input = String;
     type Output = i32;
 
+    fn day_number() -> usize {
+        1
+    }
+
     fn part1(input: &Self::Input) -> Self::Output {
         input.chars().fold(0, |acc, c| {
             match c {

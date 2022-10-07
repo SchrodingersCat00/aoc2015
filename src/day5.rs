@@ -47,6 +47,10 @@ impl Day for Day5 {
     type Input = Vec<String>;
     type Output = usize;
 
+    fn day_number() -> usize {
+        5
+    }
+
     fn part1(input: &Self::Input) -> Self::Output {
         input
             .iter()

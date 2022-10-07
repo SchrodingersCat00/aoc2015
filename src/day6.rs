@@ -133,6 +133,10 @@ impl Day for Day6 {
     type Input = Vec<Instruction>;
     type Output = usize;
 
+    fn day_number() -> usize {
+        6
+    }
+
     fn part1(input: &Self::Input) -> Self::Output {
         let mut grid = Grid::<bool>::new();
         for instruction in input {
@@ -155,7 +159,7 @@ impl Day for Day6 {
         input
             .lines()
             .map(parse_instruction)
-            .map(|x| x.unwrap())
+            .map(Option::unwrap)
             .collect()
     }
 }
