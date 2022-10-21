@@ -1,7 +1,7 @@
 use crate::common::Day;
 
 pub struct Day1;
-impl Day for Day1 {
+impl<'a> Day<'a> for Day1 {
     type Input = String;
     type Output = i32;
 
